@@ -1,0 +1,72 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/964a4dff-0009-4b7e-ba5f-e489508c48cd/ # 
+title: icraft capstone users
+version: 1.0
+
+traits:
+  make:   
+    responses:
+        200:
+          description: "success request"
+          body:
+            application/json:
+              example: !include Request_example.json
+  yel:
+    responses:
+       404:
+          body:
+            application/json:
+              example: "Not Found!"
+  nel:
+    responses:
+      400:
+        body:
+          application/json:
+            example: "Bad request"
+/users:
+    displayName: "icraft users"
+    get:      
+      is: [make]   
+    post:
+      description: "Adds a new user to the list"
+      responses:
+        201:
+          description: "a user created"
+          body:
+            application/json:
+              example: !include CREATED_response.json      
+/{id}:
+    displayName: "lists of icraft users with their id"
+    get:
+      description: "Get a user by its id"
+      is: [make,yel,nel] 
+    put:
+      description: "update a user to the list of users"
+      body:
+        application/json:
+          example:  !include Request_example.json
+      is: [nel]        
+      responses:
+        201:
+          description: "a user created"
+          body:
+            application/json:
+              example:  !include UPDATED_response.json       
+    delete:
+      description: "Delete a user from the list of users"
+      body:
+        application/json:
+          example:  !include Request_example.json
+      responses:
+        200:
+          description: "success request"
+          body:
+            application/json:
+              example:  !include DELETED_response.json
+    is: [yel]
+      
+       
+                  
+        
+        
+    
