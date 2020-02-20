@@ -1,13 +1,13 @@
 {
   "configs": [
     "icraft-capstone-users.xml",
-    "icraftusers.xml"
+    "soapWsdlConfig.xml"
   ],
   "secureProperties": [],
   "redeploymentEnabled": true,
   "name": "com.mycompany:icraftusers:1.0.0-SNAPSHOT",
   "minMuleVersion": "4.2.2",
-  "requiredProduct": "MULE",
+  "requiredProduct": "MULE_EE",
   "classLoaderModelLoaderDescriptor": {
     "id": "mule",
     "attributes": {
@@ -19,9 +19,14 @@
         "api/icraft-capstone-users.raml",
         "api/Request_example.json",
         "api/UPDATED_response.json",
+        "application-types.xml",
+        "examples/flights-1.json",
+        "examples/flights-2.json",
+        "examples/flights.json",
+        "examples/user.xml",
         "icraft-capstone-users.xml",
-        "icraftusers.xml",
-        "log4j2.xml"
+        "log4j2.xml",
+        "soapWsdlConfig.xml"
       ]
     }
   },

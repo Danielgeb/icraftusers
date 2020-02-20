@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="xml" format="xml">
+      <types:example format="xml" element="user" location="examples/user.xml"/>
+    </types:type>
+    <types:type name="flightsjson" format="json">
+      <types:shape format="weave" example="examples/flights-2.json"><![CDATA[%dw 2.0
+
+type flightsjson = {|
+  id: Number {"typeId": "int"}, 
+  first: String, 
+  last: String, 
+  department: String
+|} {"example": "{\\\"id\\\":1,\\\"first\\\":\\\"Haile\\\",\\\"last\\\":\\\"Wolde\\\",\\\"department\\\":\\\"finance\\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#96085e8a-a9f4-4af8-870a-7017f54e1a54">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="flightsjson"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#a8895d9e-96aa-41f8-a6f3-1fc77bf6f28b"/>
+  <types:enrichment select="#f7f5e4da-e28a-49e3-8df4-a8c5d6ac430d"/>
+  <types:enrichment select="#6cf138e3-d7b9-4efb-8744-cd9249fe5f4a">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="flightsjson[]"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#03afee1e-3179-4f8f-819c-4c4663f147e8">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="flightsjson"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#3b259a3f-bb0a-4dba-bcf5-29d0f1b7165b">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="flightsjson"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
